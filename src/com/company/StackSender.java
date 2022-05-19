@@ -18,6 +18,7 @@ public class StackSender {
         DatagramPacket dgp;
 
         AudioFormat.Encoding encoding = AudioFormat.Encoding.PCM_SIGNED;
+
         float rate = 44100.0f;
         int channels = 2;
         int sampleSize = 16;
@@ -42,11 +43,11 @@ public class StackSender {
             byte[] data = new byte[4096];
 
             addr = InetAddress.getByName("225.6.7.8");
-            MulticastSocket socket = new MulticastSocket();
+            MulticastSocket socket = new MulticastSocket(); //creem socketul pentru comunicare
             while (true) {
-                // Read the next chunk of data from the TargetDataLine.
+                // Citim următoarea bucată de date din TargetDataLine.
                 line.read(data, 0, data.length);
-                // Save this chunk of data.
+                // Salvam această bucată de date.
                 dgp = new DatagramPacket (data,data.length,addr,port);
 
                 socket.send(dgp);

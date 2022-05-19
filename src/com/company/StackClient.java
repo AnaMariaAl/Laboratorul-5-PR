@@ -23,16 +23,8 @@ public class StackClient {
             MulticastSocket mSocket = new MulticastSocket(port);
             mSocket.setReuseAddress(true);
             mSocket.joinGroup(group);
-//        DatagramSocket serverSocket = new DatagramSocket(port);
 
-            /*
-             * Formula for lag = (byte_size/sample_rate)*2
-             * Byte size 9728 will produce ~ 0.45 seconds of lag. Voice slightly broken.
-             * Byte size 1400 will produce ~ 0.06 seconds of lag. Voice extremely broken.
-             * Byte size 4000 will produce ~ 0.18 seconds of lag. Voice slightly more broken then 9728.
-             */
-
-            byte[] receiveData = new byte[4096];
+            byte[] receiveData = new byte[4096]; //datele care urmeaza sa le primim de la packet
 
             format = new AudioFormat(sampleRate, 16, 2, true, false);
             dataLineInfo = new DataLine.Info(SourceDataLine.class, format);
